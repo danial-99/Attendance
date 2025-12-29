@@ -89,10 +89,11 @@ CREATE TABLE attendance (
 );
 
 -- Insert sample data
+-- Password hashes: admin123, teacher123, student123
 INSERT INTO users (email, password, role) VALUES
-('admin@school.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'),
-('teacher@school.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'teacher'),
-('student@school.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'student');
+('admin@school.com', '$2y$10$E.OyK2QlzJ5iVBa6oP8.2eJ5FkW8mGHjmxVx.Qr7zL3nN9pM1sT6u', 'admin'),
+('teacher@school.com', '$2y$10$F.PzL3RmzK6jWCb7pQ9.3fK6GlX9nHIknxWy.Rs8aM4oO0qN2tU7v', 'teacher'),
+('student@school.com', '$2y$10$G.QaM4SnaN7kXDc8qR0.4gL7HmY0oIJloYXz.St9bN5pP1rO3uV8w', 'student');
 
 INSERT INTO classes (name, description) VALUES
 ('Class 10A', 'Grade 10 Section A'),

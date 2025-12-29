@@ -43,11 +43,15 @@ class Controller {
         
         // For Apache with mod_rewrite
         $scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http';
-        $baseUrl = $scheme . '://' . $_SERVER['HTTP_HOST'];
-        $scriptName = dirname($_SERVER['SCRIPT_NAME']);
+        $host = $_SERVER['HTTP_HOST'];
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $basePath = dirname($scriptName);
         
-        if ($scriptName !== '/') {
-            $baseUrl .= $scriptName;
+        // Build the base URL with the project folder
+        $baseUrl = $scheme . '://' . $host . $basePath;
+        
+        if (empty($path)) {
+            return $baseUrl . '/';
         }
         
         return $baseUrl . '/' . ltrim($path, '/');
@@ -96,8 +100,19 @@ class Controller {
         $uri = $_SERVER['REQUEST_URI'];
         $uri = parse_url($uri, PHP_URL_PATH);
         $uri = trim($uri, '/');
+        
+        // Remove project folder from URI if present
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $basePath = dirname($scriptName);
+        if ($basePath !== '/' && strpos($uri, trim($basePath, '/')) === 0) {
+            $uri = substr($uri, strlen(trim($basePath, '/')));
+            $uri = trim($uri, '/');
+        }
+        
+        // Remove index.php if present
         $uri = str_replace('index.php/', '', $uri);
         $uri = str_replace('index.php', '', $uri);
+        
         return $uri;
     }
     

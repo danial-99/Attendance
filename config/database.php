@@ -10,7 +10,7 @@ class Database {
     private $host = 'localhost';
     private $database = 'attendance_portal';
     private $username = 'root';
-    private $password = 'root123';        // Use the password you set
+    private $password = '';        // Use the password you set
     
     private function __construct() {
         try {

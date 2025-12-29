@@ -54,6 +54,7 @@ $router = new Router();
 // Define routes
 $router->add('', 'AuthController@login');
 $router->add('login', 'AuthController@login');
+$router->add('signup', 'AuthController@signup');
 $router->add('logout', 'AuthController@logout');
 $router->add('dashboard', 'DashboardController@index');
 

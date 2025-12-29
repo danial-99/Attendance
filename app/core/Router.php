@@ -37,6 +37,14 @@ class Router {
         $uri = parse_url($uri, PHP_URL_PATH);
         $uri = trim($uri, '/');
         
+        // Remove project folder from URI if present
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $basePath = dirname($scriptName);
+        if ($basePath !== '/' && strpos($uri, trim($basePath, '/')) === 0) {
+            $uri = substr($uri, strlen(trim($basePath, '/')));
+            $uri = trim($uri, '/');
+        }
+        
         // Remove index.php if present
         $uri = str_replace('index.php/', '', $uri);
         $uri = str_replace('index.php', '', $uri);
